@@ -1,354 +1,145 @@
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>五子棋实践</title>
   <link rel="stylesheet">
   <style>
-    table{
+    table {
       border-collapse: collapse;
       margin: 0 auto;
       position: relative;
       top: 30px;
     }
-    table tr:last-child td{
+    
+    table tr:last-child td {
       border: none;
     }
-    table tr td:last-child{
+    
+    table tr td:last-child {
       border: none;
     }
-    td{
+    
+    td {
       width: 40px;
       height: 40px;
       border: 1px solid black;
       text-align: center;
     }
-    td span{
+    
+    td span {
       position: relative;
       //top: -18px;
       //right: 18px;
     }
-    span.black{
+    
+    span.black {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background-color: #000;
     }
-    .pawn{
+    
+    .pawn {
       width: 35px;
       border-radius: 50%;
       position: relative;
       top: -18px;
       right: 22px
     }
-    a{
+    
+    a {
       text-decoration: none;
       color: transparent;
     }
-    a:hover{
+    
+    a:hover {
       cursor: pointer;
     }
   </style>
 </head>
+
 <body>
   <table>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
-    <tr>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-      <td><a class="pawn empty"></a></td>
-    </tr>
+
   </table>
   <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
   <script>
-    $(function(){
+    $(function () {
+
       var counter = 'pao';
-      $(".empty").text('`').on('click', function(){
+      var versus = [];
+      for (var i = 0; i < 15; i++) {
+        versus[i] = [];
+        for (var j = 0; j < 15; j++)
+          versus[i][j] = null;
+      }
+      $('table').html(createTable());
+      $(".empty").text('`').on('click', function () {
         counter = counter == 'pao' ? 'ma' : 'pao';
-        $(this).replaceWith("<img class='pawn' src='img/"+ counter +".jpg'>");
-      })
+        var $this = $(this);
+        $this.replaceWith("<img class='pawn' src='img/" + counter + ".jpg'>");
+        var x = $this.data('x'),
+          y = $this.data('y');
+        versus[x][y] = counter;
+        console.log(versus);
+        isWin() && alert(counter + ' win!');
+      });
+
+      function isWin() {
+        for (var i = 0; i < 15; i++) {
+          for (var j = 0; j < 12; j++) {
+            if (straightEqual(versus[i][j], versus[i][j + 1], versus[i][j + 2], versus[i][j + 3], versus[i][j + 4])) return true;
+          }
+        }
+
+        for (var i = 0; i < 15; i++) {
+          for (var j = 0; j < 11; j++) {
+            if (straightEqual(versus[j][i], versus[j + 1][i], versus[j + 2][i], versus[j + 3][i], versus[j + 4][i])) return true;
+          }
+        }
+
+        for (var i = 0; i < 14; i++) {
+
+          for (var j = 0; j < 14; j++) {
+
+            if (i <= 10 && j <= 10) {
+              if (straightEqual(versus[i][j], versus[i + 1][j + 1], versus[i + 2][j + 2], versus[i + 3][j + 3], versus[i + 4][j + 4])) return true;
+            }
+            if (i >= 4 && j >= 4) {
+              if (straightEqual(versus[i][j], versus[i - 1][j - 1], versus[i - 2][j - 2], versus[i - 3][j - 3], versus[i - 4][j - 4])) return true;
+            }
+            if (i >= 4 && j <= 10) {
+              if (straightEqual(versus[i][j], versus[i - 1][j + 1], versus[i - 2][j + 2], versus[i - 3][j + 3], versus[i - 4][j + 4])) return true;
+            }
+            if (i <= 10 && j >= 4) {
+              if (straightEqual(versus[i][j], versus[i + 1][j - 1], versus[i + 2][j - 2], versus[i + 3][j - 3], versus[i + 4][j - 4])) return true;
+            }
+          }
+        }
+        return false;
+      }
     })
+
+    function createTable() {
+      var ret = '';
+      for (i = 0; i < 15; i++) {
+        ret += '<tr>';
+        for (j = 0; j < 15; j++) {
+          ret += '<td><a class="pawn empty" data-x="' + i + '" data-y="' + j + '"></td>';
+        }
+        ret += '</tr>';
+      }
+      return ret;
+    }
+
+
+
+    function straightEqual(a, b, c, d, e) {
+      if (a == b && b == c && c == d && d == e && a != null) return true;
+      return false;
+    }
   </script>
 </body>
+
 </html>
