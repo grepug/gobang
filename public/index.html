@@ -1,0 +1,354 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>五子棋实践</title>
+  <link rel="stylesheet">
+  <style>
+    table{
+      border-collapse: collapse;
+      margin: 0 auto;
+      position: relative;
+      top: 30px;
+    }
+    table tr:last-child td{
+      border: none;
+    }
+    table tr td:last-child{
+      border: none;
+    }
+    td{
+      width: 40px;
+      height: 40px;
+      border: 1px solid black;
+      text-align: center;
+    }
+    td span{
+      position: relative;
+      //top: -18px;
+      //right: 18px;
+    }
+    span.black{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #000;
+    }
+    .pawn{
+      width: 35px;
+      border-radius: 50%;
+      position: relative;
+      top: -18px;
+      right: 22px
+    }
+    a{
+      text-decoration: none;
+      color: transparent;
+    }
+    a:hover{
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+    <tr>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+      <td><a class="pawn empty"></a></td>
+    </tr>
+  </table>
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  <script>
+    $(function(){
+      var counter = 'pao';
+      $(".empty").text('`').on('click', function(){
+        counter = counter == 'pao' ? 'ma' : 'pao';
+        $(this).replaceWith("<img class='pawn' src='img/"+ counter +".jpg'>");
+      })
+    })
+  </script>
+</body>
+</html>
