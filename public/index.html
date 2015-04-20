@@ -1,15 +1,36 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <meta name="description" content="">
+  <meta name="author" content="">
   <title>五子棋实践</title>
-  <link rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <style>
+    body {
+      moz-user-select: -moz-none;
+      -moz-user-select: none;
+      -o-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    main {
+      margin-top: 50px;
+    }
+    
     table {
       border-collapse: collapse;
       margin: 0 auto;
-      position: relative;
-      top: 30px;
+      /*
+
+*/
     }
     
     table tr:last-child td {
@@ -27,25 +48,12 @@
       text-align: center;
     }
     
-    td span {
-      position: relative;
-      //top: -18px;
-      //right: 18px;
-    }
-    
-    span.black {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #000;
-    }
-    
     .pawn {
       width: 35px;
       border-radius: 50%;
       position: relative;
-      top: -18px;
-      right: 22px
+      top: -20px;
+      right: 20px
     }
     
     a {
@@ -56,90 +64,44 @@
     a:hover {
       cursor: pointer;
     }
+    
+    #print-wall {
+      overflow: auto;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      width: 30%;
+      height: 250px;
+      border: 1px solid #000;
+    }
   </style>
 </head>
 
 <body>
-  <table>
+  <main class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="container">
+          <input id="input-name" type="text" placeholder="用户名">
+          <input id="open-btn" type="button" value="玩一局">
 
-  </table>
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-  <script>
-    $(function () {
+          <div id="print-wall">
 
-      var counter = 'pao';
-      var versus = [];
-      for (var i = 0; i < 15; i++) {
-        versus[i] = [];
-        for (var j = 0; j < 15; j++)
-          versus[i][j] = null;
-      }
-      $('table').html(createTable());
-      $(".empty").text('`').on('click', function () {
-        counter = counter == 'pao' ? 'ma' : 'pao';
-        var $this = $(this);
-        $this.replaceWith("<img class='pawn' src='img/" + counter + ".jpg'>");
-        var x = $this.data('x'),
-          y = $this.data('y');
-        versus[x][y] = counter;
-        console.log(versus);
-        isWin() && alert(counter + ' win!');
-      });
+          </div>
+          <textarea class="form-control" rows="3" id="input-send" style="width:30%"></textarea>
+          <button id="send-btn">发送</button>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <table class=""></table>
+      </div>
+    </div>
+  </main>
 
-      function isWin() {
-        for (var i = 0; i < 15; i++) {
-          for (var j = 0; j < 12; j++) {
-            if (straightEqual(versus[i][j], versus[i][j + 1], versus[i][j + 2], versus[i][j + 3], versus[i][j + 4])) return true;
-          }
-        }
-
-        for (var i = 0; i < 15; i++) {
-          for (var j = 0; j < 11; j++) {
-            if (straightEqual(versus[j][i], versus[j + 1][i], versus[j + 2][i], versus[j + 3][i], versus[j + 4][i])) return true;
-          }
-        }
-
-        for (var i = 0; i < 14; i++) {
-
-          for (var j = 0; j < 14; j++) {
-
-            if (i <= 10 && j <= 10) {
-              if (straightEqual(versus[i][j], versus[i + 1][j + 1], versus[i + 2][j + 2], versus[i + 3][j + 3], versus[i + 4][j + 4])) return true;
-            }
-            if (i >= 4 && j >= 4) {
-              if (straightEqual(versus[i][j], versus[i - 1][j - 1], versus[i - 2][j - 2], versus[i - 3][j - 3], versus[i - 4][j - 4])) return true;
-            }
-            if (i >= 4 && j <= 10) {
-              if (straightEqual(versus[i][j], versus[i - 1][j + 1], versus[i - 2][j + 2], versus[i - 3][j + 3], versus[i - 4][j + 4])) return true;
-            }
-            if (i <= 10 && j >= 4) {
-              if (straightEqual(versus[i][j], versus[i + 1][j - 1], versus[i + 2][j - 2], versus[i + 3][j - 3], versus[i + 4][j - 4])) return true;
-            }
-          }
-        }
-        return false;
-      }
-    })
-
-    function createTable() {
-      var ret = '';
-      for (i = 0; i < 15; i++) {
-        ret += '<tr>';
-        for (j = 0; j < 15; j++) {
-          ret += '<td><a class="pawn empty" data-x="' + i + '" data-y="' + j + '"></td>';
-        }
-        ret += '</tr>';
-      }
-      return ret;
-    }
-
-
-
-    function straightEqual(a, b, c, d, e) {
-      if (a == b && b == c && c == d && d == e && a != null) return true;
-      return false;
-    }
-  </script>
+  <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/AV.realtime.js"></script>
+  <script src="js/realtime.js"></script>
+  <script src="js/index.js"></script>
 </body>
 
 </html>
