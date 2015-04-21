@@ -26,6 +26,7 @@
     }
     
     table {
+      overflow: auto;
       border-collapse: collapse;
       margin: 0 auto;
       /*
@@ -69,9 +70,26 @@
       overflow: auto;
       margin-top: 50px;
       margin-bottom: 50px;
-      width: 30%;
+      width: 20%;
       height: 250px;
       border: 1px solid #000;
+    }
+    
+    .gre-play-btn {
+      margin-left: 15px;
+    }
+    
+    .gre-players >:last-child {
+      margin-top: 200px;
+    }
+    
+    .gre-players {
+      text-align: center;
+      border: none;
+    }
+    
+    .gre-players img {
+      width: 80px;
     }
   </style>
 </head>
@@ -79,20 +97,52 @@
 <body>
   <main class="container">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <div class="container">
-          <input id="input-name" type="text" placeholder="用户名">
+          <!--
+          
           <input id="open-btn" type="button" value="玩一局">
+-->
+          <div class="gre-play-btn">
+           <input id="input-name" type="text" placeholder="用户名">
+<!--
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 白棋
+            </label>
+-->
+            <button id="open-btn" type="button" class="btn btn-primary btn-sm">加入房间</button>
+            <!--            <button id="quit-btn" type="button" class="btn btn-primary btn-sm">退出房间</button>-->
+            <!--           <button type="button" class="btn btn-warning">加入游戏</button>-->
+          </div>
 
           <div id="print-wall">
 
           </div>
-          <textarea class="form-control" rows="3" id="input-send" style="width:30%"></textarea>
+          <textarea class="form-control" rows="3" id="input-send" style="width:20%"></textarea>
           <button id="send-btn">发送</button>
         </div>
       </div>
-      <div class="col-sm-8">
+      <div class="col-sm-7">
         <table class=""></table>
+      </div>
+      <div class="col-sm-2 gre-players">
+        <div class="thumbnail gre-player">
+          <img src="img/head.jpg" alt="...">
+          <div class="caption">
+            <h4>Klaus</h4>
+            <p>积分500</p>
+          </div>
+        </div>
+        <div class="thumbnail gre-player">
+          <img src="img/head.jpg" alt="...">
+          <div class="caption">
+            <h4>GrePuG</h4>
+            <p>积分500</p>
+          </div>
+        </div>
       </div>
     </div>
   </main>
