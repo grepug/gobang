@@ -1,21 +1,22 @@
 var role = 'white';
 var versus = [];
-var myturn = true;
+var myturn = false;
+var firstJoin = 1;
+var kickOutTimeout;
+var opponentsId;
 
-$(function () {
+var initTheGame = function () {
 
   var $table = $('table');
-  for (var i = 0; i < 15; i++) {
-    versus[i] = [];
-    for (var j = 0; j < 15; j++)
-      versus[i][j] = null;
-  }
-  $table.html(createTable()).delegate('.empty', 'click', function () {
+  $table.html(createTable()).undelegate().delegate('.empty', 'click', function () {
     if (firstFlag) {
       alert('请先进入房间');
       return;
     }
-
+    if (firstJoin > 2) {
+      myturn = true;
+      firstJoin = 0;
+    }
     if (!myturn) {
       alert('对面还没走，别着急！！！！');
       return;
@@ -25,7 +26,7 @@ $(function () {
     var $this = $(this),
       x = $this.data('x'),
       y = $this.data('y');
-    $this.replaceWith("<img class='pawn' data-x='" + x + "' data-y='" + y + "' src='img/" + role + ".jpg'>");
+    $this.replaceWith("<img class='pawn' data-x='" + x + "' data-y='" + y + "' data-role='" + role + "' src='img/" + role + ".jpg'>");
     versus[x][y] = role;
 
     console.log(versus);
@@ -34,6 +35,8 @@ $(function () {
       currentStep: [x, y],
       versus: versus,
       nextRole: role
+    }, {
+      receipt: true
     }, function (data) {
 
       // 发送成功之后的回调
@@ -42,26 +45,36 @@ $(function () {
       showLog('自己： ', "x:" + x + " y:" + y);
       printWall.scrollTop = printWall.scrollHeight;
 
-      var win = isWin();
-      if (win) {
-        console.log(role + " win!");
-        console.log(win);
-        for (var i = 0; i < win.length; i++) {
-          $("[data-x='" + win[i][0] + "'][data-y='" + win[i][1] + "']").attr('src', 'img/' + role + '-win.jpg');
-          console.log(win[i][0])
-        }
-        $('table').undelegate();
-      }
+      //      kickOutTimeout = setTimeout(function () {
+      //        room.list(function (data) {
+      //          console.log(data);
+      //          room.remove(data, function () {
+      //            
+      //          })
+      //        })
+      //      }, 5000);
+      rt.ping(['k', 'g'], function (d) {
+        console.log(d);
+      })
+      onWin();
+
     });
   });
-
-
+  for (var i = 0; i < 15; i++) {
+    versus[i] = [];
+    for (var j = 0; j < 15; j++)
+      versus[i][j] = null;
+  }
   $(".empty").text('`');
+}
+$(function () {
 
+  initTheGame();
 
-  //  $(window).bind('beforeunload', function () {
-  //    return '您输入的内容尚未保存，确定离开此页面吗？';
-  //  });
+  $('window').unload(function () {
+    room.leave();
+    rt.close();
+  })
 });
 
 function createTable() {
@@ -74,6 +87,22 @@ function createTable() {
     ret += '</tr>';
   }
   return ret;
+}
+
+function onWin() {
+  var win = isWin();
+  if (win) {
+    console.log(role + " win!");
+    showLog(role + " win!");
+    console.log(win);
+    $("[data-role='black']").attr('src', 'img/black.jpg');
+    $("[data-role='white']").attr('src', 'img/white.jpg');
+    for (var i = 0; i < win.length; i++) {
+      $("[data-x='" + win[i][0] + "'][data-y='" + win[i][1] + "']").attr('src', 'img/' + role + '-win.jpg');
+      console.log(win[i][0])
+    }
+    $('table').undelegate();
+  }
 }
 
 function isWin() {

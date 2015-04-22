@@ -5,7 +5,7 @@ var appId = '3l36nhyvwa2gg80zqq14lkkyhmmx1ukt7t89yg0byzyfqv4m';
 //var Conv = AV.Object.extend('Conversation');
 
 // 请换成你自己的一个房间的 conversation id
-var roomId = '5535a578e4b052897f517ede';
+var roomId = '5535f631e4b078a90713c406';
 
 // 每个客户端自定义的 id
 var clientId = 'mygobang';
@@ -47,20 +47,34 @@ function main() {
   if (val) clientId = val;
   firstFlag || rt.close();
 
-  console.log(clientId)
-    // 创建实时通信实例
+  // 创建实时通信实例
   rt = AV.realtime({
     appId: appId,
     clientId: clientId
   });
-
+  rt.on('join', function (data) {
+    data.m[0] != clientId && showLog(data.m[0] + "进来了");
+    firstJoin++;
+    firstJoin > 0 && initTheGame();
+    console.log(firstJoin);
+  });
   rt.on('left', function (data) {
     console.log(data);
+//    if (data.peerId == clientId) {
+  //      rt.close();
+  //      firstFlag = true;
+  //    }
+  });
+  rt.on('close', function () {
+    console.log('实时通信服务被断开！');
+    firstFlag = true;
   });
   // 监听连接成功事件
   rt.on('open', function () {
     firstFlag = false;
     showLog('服务器连接成功！');
+
+    initTheGame();
     rt.room(roomId, function (object) {
 
       console.log(object)
@@ -78,6 +92,12 @@ function main() {
               showLog('该房间已满，已离开');
               return;
             } else {
+              $('#open-btn').replaceWith('<button id="leave-btn" type="button" class="btn btn-danger btn-sm">退出房间</button>');
+              $('#leave-btn').on('click', function () {
+                room.leave();
+                rt.close();
+                location.reload();
+              })
               room.list(function (data) {
                 showLog('当前 Conversation 的成员列表：', data);
               });
@@ -94,25 +114,23 @@ function main() {
           } else if (data.msg.currentStep) {
             var x = data.msg.currentStep[0],
               y = data.msg.currentStep[1];
-            $("[data-x='" + x + "'][data-y='" + y + "']").replaceWith("<img class='pawn' data-x='" + x + "' data-y='" + y + "' src='img/" + data.msg.nextRole + ".jpg'>");
+            $("[data-role='black']").attr('src', 'img/black.jpg');
+            $("[data-role='white']").attr('src', 'img/white.jpg');
+            $("[data-x='" + x + "'][data-y='" + y + "']").replaceWith("<img class='pawn' data-x='" + x + "' data-y='" + y + "' data-role='" + data.msg.nextRole + "' src='img/" + data.msg.nextRole + "-win.jpg'>");
             versus = data.msg.versus;
             role = data.msg.nextRole;
             myturn = true;
             console.log(versus);
-            var win = isWin();
-            if (win) {
-              console.log(role + " win!");
-              console.log(win);
-              for (var i = 0; i < win.length; i++) {
-                $("[data-x='" + win[i][0] + "'][data-y='" + win[i][1] + "']").attr('src', 'img/' + role + '-win.jpg');
-                console.log(win[i][0])
-              }
-              $('table').undelegate();
-            }
+            onWin();
+            text = "x:" + data.msg.currentStep[0] + " y:" + data.msg.currentStep[1];
           } else {
-            text = data.msg;
+
           }
           showLog(data.fromPeerId + '： ', text);
+        });
+        room.receipt(function (d) {
+          console.log(d);
+          clearTimeout(kickOutTimeout);
         });
         //    } else {
         //      var room2 = rt.room({
@@ -133,6 +151,22 @@ function main() {
         //        console.log(data);
         //      });
         //    }
+      } else {
+        room = rt.conv({
+          // 人员的 id
+          members: [
+        'LeanCloud02'
+    ],
+          // 创建暂态的聊天室
+          // transient: true,
+          // 默认的数据，可以放 Conversation 名字等
+          data: {
+            title: 'testTitle'
+          }
+        }, function (result) {
+          console.log('Conversation created callback');
+        });
+
       }
     });
   });
@@ -159,12 +193,41 @@ function sendMsg() {
   room.send({
     text: val
   }, {
-    type: 'text'
+    type: 'text',
+    receipt: true
   }, function (data) {
 
     // 发送成功之后的回调
     inputSend.value = '';
     showLog('自己： ', val);
+    //    kickOutTimeout = setTimeout(function () {
+    //      room.list(function (data) {
+    //        //console.log(data);
+    //        for (var i = 0; i < data.length; i++) {
+    //          if (data[i] == clientId) data.splice(i, 1);
+    //        }
+    //        room.send({
+    //          text: '您已经被踢出房间',
+    //        }, {
+    //          type: 'text'
+    //        }, function () {
+    //          room.remove(data, function () {
+    //            console.log(data + ' have been removed!');
+    //          });
+    //        });
+    //      });
+    //    }, 3000);
+    room.list(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i] == clientId) data.splice(i, 1);
+      }
+      rt.ping(data, function (d) {
+        if (d.length == 0) {
+          showLog('你的对手已离线');
+          room.remove(data);
+        }
+      })
+    });
     printWall.scrollTop = printWall.scrollHeight;
   });
 
@@ -210,6 +273,7 @@ function showLog(msg, data) {
   var p = document.createElement('p');
   p.innerHTML = msg;
   printWall.appendChild(p);
+  printWall.scrollTop = printWall.scrollHeight;
 }
 
 function encodeHTML(source) {
