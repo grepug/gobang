@@ -1,0 +1,39 @@
+doctype html
+head
+  meta(charset="UTF-8")
+  meta(http-equiv="X-UA-Compatible", content="IE=edge")
+  meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+  title 五子棋实践
+  link(rel="stylesheet", href="css/bootstrap-theme.min.css")
+  link(rel="stylesheet", href="css/bootstrap.min.css")
+  link(rel="stylesheet", href="css/index.css")
+body
+  main.container
+    .row
+      .col-sm-3
+        .container
+          .gre-play-btn
+            input#input-name(type="text", placeholder="用户名")
+            button.btn.btn-primary.btn-sm#open-btn(type="button") 加入房间
+          #print-wall
+          textarea.form-control#input-send(rows="3", style="width:20%")
+          button#send-btn 发送
+      .col-sm-7
+        table
+      .col-sm-2.gre-players
+        .thumbnail.gre-player
+          img(src="img/head.jpg",alt="")
+          .caption
+            h4 Klaus
+            p 积分500
+        .thumbnail.gre-player
+          img(src="img/head.jpg",alt="")
+          .caption
+            h4 Klaus
+            p 积分500
+  script(src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js")
+  script(src="js/bootstrap.min.js")
+  script(src="js/AV.realtime.js")
+  script(src="js/realtime.js")
+  script(src="js/index.js")
+        

@@ -1,0 +1,79 @@
+ body {
+   moz-user-select: -moz-none;
+   -moz-user-select: none;
+   -o-user-select: none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+ }
+ 
+ main {
+   margin-top: 50px;
+ }
+ 
+ table {
+   overflow: auto;
+   border-collapse: collapse;
+   margin: 0 auto;
+   /*
+    */
+ }
+ 
+ table tr:last-child td {
+   border: none;
+ }
+ 
+ table tr td:last-child {
+   border: none;
+ }
+ 
+ td {
+   width: 40px;
+   height: 40px;
+   border: 1px solid black;
+   text-align: center;
+ }
+ 
+ .pawn {
+   width: 35px;
+   border-radius: 50%;
+   position: relative;
+   top: -20px;
+   right: 20px
+ }
+ 
+ a {
+   text-decoration: none;
+   color: transparent;
+ }
+ 
+ a:hover {
+   cursor: pointer;
+ }
+ 
+ #print-wall {
+   overflow: auto;
+   margin-top: 50px;
+   margin-bottom: 50px;
+   width: 20%;
+   height: 250px;
+   border: 1px solid #000;
+ }
+ 
+ .gre-play-btn {
+   margin-left: 15px;
+ }
+ 
+ .gre-players >:last-child {
+   margin-top: 200px;
+ }
+ 
+ .gre-players {
+   text-align: center;
+   border: none;
+ }
+ 
+ .gre-players img {
+   width: 80px;
+ }
