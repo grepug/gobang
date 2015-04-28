@@ -1,0 +1,27 @@
+{
+  "name": "gobang",
+  "version": "1.0.0",
+  "description": "the homemade gobang game",
+  "main": "index.js",
+  "dependencies": {
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grepug/gobang.git"
+  },
+  "keywords": [
+    "game"
+  ],
+  "author": "GrePuG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grepug/gobang/issues"
+  },
+  "homepage": "https://github.com/grepug/gobang"
+}
