@@ -1,0 +1,41 @@
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+  $.ajax({
+    url: '/push',
+    type: 'POST',
+    data: {
+      hook: {
+        "password": "123",
+        "push_data": {
+          "before": "d187b143fa1e162df07615a0267a4d3cb664cf54",
+          "after": "fb0e4c6f9c60260f9305f70e63a10599590e6791",
+          "ref": "refs/heads/master",
+          "user_id": 12983,
+          "user_name": "莫粒",
+          "repository": {
+            "name": "JavaTest",
+            "url": "git@git.oschina.net:moli/JavaTest.git",
+            "description": "",
+            "homepage": "http://git.oschina.net/moli/JavaTest"
+          },
+          "commits": [{
+            "id": "fb0e4c6f9c60260f9305f70e63a10599590e6791",
+            "message": "12",
+            "timestamp": "2014-05-28T11:48:27+08:00",
+            "url": "http://git.oschina.net/moli/JavaTest/commit/fb0e4c6f9c60260f9305f70e63a10599590e6791",
+            "author": {
+              "name": "moli",
+              "email": "moli**@qq.com"
+            }
+          }],
+          "total_commits_count": 1
+        }
+      },
+      success: function(argument) {
+        // body...
+      }
+    }
+  })
+})
+</script>
